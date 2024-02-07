@@ -1,0 +1,27 @@
+database: postgresql
+django:
+  allowed_hosts: dojo.local.muj-webik.cz
+  ingress:
+    enabled: true
+    annotations:
+      cert-manager.io/cluster-issuer: acmedns
+    ingressClassName: nginx
+  activateTLS: true
+host: dojo.local.muj-webik.cz
+createSecret: true
+createRabbitMqSecret: true
+createPostgresqlSecret: true
+
+mysql:
+  enabled: false
+postgresql:
+  enabled: true
+  global:
+    storageClass: hostpath
+rabbitmq:
+  enabled: true
+  global:
+    storageClass: hostpath
+  service:
+    ports:
+      amqp: 5672
